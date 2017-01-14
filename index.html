@@ -16,7 +16,7 @@
        return Promise.all(setlist.map((data) => {
          const [songId, instanceIdStr] = data.split(":");
          const instanceId = parseInt(instanceIdStr, 10);
-         return fetch(`https://phish.in/api/v1/songs/${songId}.json`)
+         return fetch(`https://crossorigin.me/http://phish.in/api/v1/songs/${songId}.json`)
            .then(extractJson)
            .then((songData) => songData.data.tracks.find((songInstanceData) => songInstanceData.id === instanceId));
        }));
