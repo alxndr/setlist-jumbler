@@ -16,7 +16,7 @@
        return Promise.all(setlist.map((data) => {
          const [songId, instanceIdStr] = data.split(":");
          const instanceId = parseInt(instanceIdStr, 10);
-         return fetch(`http://phish.in/api/v1/songs/${songId}.json`)
+         return fetch(`https://phish.in/api/v1/songs/${songId}.json`)
            .then(extractJson)
            .then((songData) => songData.data.tracks.find((songInstanceData) => songInstanceData.id === instanceId));
        }));
@@ -25,9 +25,9 @@
      function makeSongThing(songData) {
        console.log("song data...", songData);
        const audioElement = document.createElement("audio");
+       audioElement.src = `https://crossorigin.me/${songData.mp3}`; // thanks codepen.io!!
        audioElement.crossorigin = "anonymous";
        audioElement.crossOrigin = "anonymous";
-       audioElement.src = `http://crossorigin.me/${songData.mp3}`; // thanks codepen.io!!
        const span = document.createElement("span");
        span.appendChild(document.createTextNode(`${songData.show_date}: ${songData.title}`));
        span.appendChild(audioElement);
