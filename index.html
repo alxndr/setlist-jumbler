@@ -26,8 +26,9 @@
        console.log("song data...", songData);
        const audioElement = document.createElement("audio");
        audioElement.src = `https://crossorigin.me/${songData.mp3}`; // thanks codepen.io!!
+       audioElement.controls = "controls";
+       audioElement.mediagroup = "setlist";
        audioElement.crossorigin = "anonymous";
-       audioElement.crossOrigin = "anonymous";
        const span = document.createElement("span");
        span.appendChild(document.createTextNode(`${songData.show_date}: ${songData.title}`));
        span.appendChild(audioElement);
